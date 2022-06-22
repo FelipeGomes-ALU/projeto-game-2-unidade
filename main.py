@@ -14,21 +14,21 @@ x = largura/2
 y = altura/2
 
 while 'true':
-    relogio.tick(30)
+    relogio.tick(60)
     tela.fill((0, 0, 0))
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
         if pygame.key.get_pressed()[K_a]:
-                x = x - 20
+                x = x - 5
         if pygame.key.get_pressed()[K_d]:
-                x = x + 20
+                x = x + 5
         if pygame.key.get_pressed()[K_w]:
-                y = y - 20
+                y = y - 5
         if pygame.key.get_pressed()[K_s]:
-                y = y + 20
+                y = y + 5
 
-    pygame.draw.rect(tela,(240,0,0),(x,y,50,50))
-
+    pygame.draw.rect(tela,(240,0,0),(x,y,20,20))
+    pygame.draw.circle(tela,(240,240,240),(400,500),3,00)
 
     pygame.display.update()
