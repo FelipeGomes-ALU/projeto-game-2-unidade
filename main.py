@@ -29,6 +29,6 @@ while 'true':
                 y = y + 5
 
     pygame.draw.rect(tela,(240,0,0),(x,y,20,20))
-    pygame.draw.circle(tela,(240,240,240),(400,500),3,00)
+    pygame.draw.circle(tela,(240,240,240),(400,400),3,00)
 
     pygame.display.update()
