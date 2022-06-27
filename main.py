@@ -27,7 +27,7 @@ linhas = 6
 
 
 
-# classes da parede de bloco
+# funções do jogo
 def fundodetela():
     tela.blit(bg,(0,0))
     for bloco in blocos:
@@ -47,6 +47,8 @@ class bloco(object):
 
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, [self.x, self.y, self.l, self.a])
+
+#gerado de blocos
 blocos = []
 def init():
     global blocos
@@ -58,6 +60,7 @@ def init():
 
 init()
 
+# core do jogo
 while 'TRUE' :
     relogio.tick(60)
 
