@@ -30,9 +30,29 @@ linhas = 6
 # funções do jogo
 def fundodetela():
     tela.blit(bg,(0,0))
+    Bola.desenhar(tela)
     for bloco in blocos:
         bloco.desenhar(tela)
     plat_jogavel = pygame.draw.rect(tela, preto, (x, y, 60, 5))
+
+
+
+class Bola(object):
+    def __init__(self,x,y,l,a,cor):
+        self.x = x
+        self.y = y
+        self.l = l
+        self.a = a
+        self.cor = cor
+        self.vx = 0
+        self.vy = 5
+    def desenhar(self,tela):
+        pygame.draw.rect(tela,self.cor,[self.x, self.y, self.a, self.l])
+
+    def movimento(self):
+        self.x += self.vx
+        self.y += self.vy
+
 
 class bloco(object):
     def __init__(self, x, y, l, a, cor):
@@ -59,6 +79,7 @@ def init():
 
 
 init()
+Bola = Bola(400,550,20,20,azul)
 
 # core do jogo
 while 'TRUE' :
