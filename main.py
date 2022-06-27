@@ -3,32 +3,76 @@ import pygame
 from pygame.locals import *
 
 pygame.init()
-
-tela = pygame.display.set_mode((900,600))
+# tela
+bg = pygame.image.load('background.png')
+largura = 720
+altura = 700
+tela = pygame.display.set_mode((largura, altura))
 pygame.display.set_caption('star dust')
 relogio = pygame.time.Clock()
 
-largura = 1000
-altura = 800
-x = largura/2
-y = altura/2
+x = 325
+y = 600
+# cores
+verde = (0, 178, 14)
+azul = (58, 53, 255)
+vermelho = (58, 53, 255)
+preto = (0, 0, 0)
 
-while 'true':
+# variaveis do jogo
+
+
+colunas = 7
+linhas = 6
+
+
+
+# classes da parede de bloco
+def fundodetela():
+    tela.blit(bg,(0,0))
+    for bloco in blocos:
+        bloco.desenhar(tela)
+    plat_jogavel = pygame.draw.rect(tela, preto, (x, y, 60, 5))
+
+class bloco(object):
+    def __init__(self, x, y, l, a, cor):
+        self.x = x
+        self.y = y
+        self.l = l
+        self.a = a
+        self.cor = cor
+        self.visivel = 'true'
+        self.xx = self.x + self.l
+        self.yy = self.y + self.a
+
+    def desenhar(self, tela):
+        pygame.draw.rect(tela, self.cor, [self.x, self.y, self.l, self.a])
+blocos = []
+def init():
+    global blocos
+    blocos = []
+    for l in range(9):
+        for c in range(6):
+            blocos.append(bloco(10 + l * 79, 50 + c * 35, 70, 25, verde))
+
+
+init()
+
+while 'TRUE' :
     relogio.tick(60)
-    tela.fill((0, 0, 0))
+
+
+
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
-        if pygame.key.get_pressed()[K_a]:
-                x = x - 5
-        if pygame.key.get_pressed()[K_d]:
-                x = x + 5
-        if pygame.key.get_pressed()[K_w]:
-                y = y - 5
-        if pygame.key.get_pressed()[K_s]:
-                y = y + 5
 
-    pygame.draw.rect(tela,(240,0,0),(x,y,20,20))
-    pygame.draw.circle(tela,(240,240,240),(400,400),3,00)
+        if pygame.key.get_pressed()[K_a]:
+            x = x - 5
+        if pygame.key.get_pressed()[K_d]:
+            x = x + 5
+        fundodetela()
+
 
     pygame.display.update()
+
