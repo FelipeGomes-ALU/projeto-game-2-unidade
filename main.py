@@ -16,7 +16,7 @@ y = 600
 # cores
 verde = (0, 178, 14)
 azul = (58, 53, 255)
-vermelho = (58, 53, 255)
+vermelho = (255, 0, 0)
 preto = (0, 0, 0)
 
 # variaveis do jogo
@@ -33,7 +33,21 @@ def fundodetela():
     Bola.desenhar(tela)
     for bloco in blocos:
         bloco.desenhar(tela)
-    plat_jogavel = pygame.draw.rect(tela, preto, (x, y, 60, 5))
+    #plat_jogavel = pygame.draw.rect(tela, preto, (x, y, 60, 5))
+    plataforma_Jogador.desenhar_plataforma(tela)
+
+
+class plataforma(object):
+    def __init__(self,x,y,l,a,cor):
+        self.x = x
+        self.y = y
+        self.l = l
+        self.a = a
+        self.cor = cor
+
+    def desenhar_plataforma(self, tela):
+        pygame.draw.rect(tela,self.cor,[self.x, self.y, self.a, self.l])
+
 
 
 
@@ -68,7 +82,7 @@ class bloco(object):
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, [self.x, self.y, self.l, self.a])
 
-#gerado de blocos
+#gerador de blocos
 blocos = []
 def init():
     global blocos
@@ -80,21 +94,28 @@ def init():
 
 init()
 Bola = Bola(400,550,20,20,azul)
+plataforma_Jogador = plataforma(largura/2 , altura -75, 20, 140, (vermelho))
 
 # core do jogo
 while 'TRUE' :
     relogio.tick(60)
-
+    pygame.mouse.set_visible(0)
+    if pygame.mouse.get_pos()[0] - plataforma_Jogador.l//2 < 0:
+        plataforma_Jogador.x = 0
+    elif pygame.mouse.get_pos()[0] + plataforma_Jogador.l//2+120 > largura:
+        plataforma_Jogador.x = largura-plataforma_Jogador.l-110
+    else:
+        plataforma_Jogador.x = pygame.mouse.get_pos()[0] - plataforma_Jogador.l
 
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
 
-        if pygame.key.get_pressed()[K_a]:
-            x = x - 5
-        if pygame.key.get_pressed()[K_d]:
-            x = x + 5
+        #if pygame.key.get_pressed()[K_a]:
+        #    x = x - 5
+        #if pygame.key.get_pressed()[K_d]:
+        #    x = x + 5
         fundodetela()
 
 
