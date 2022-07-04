@@ -21,6 +21,7 @@ preto = (0, 0, 0)
 
 # variaveis do jogo
 
+vbola =
 
 colunas = 7
 linhas = 6
@@ -89,7 +90,7 @@ def init():
     global blocos
     blocos = []
     for l in range(9):
-        for c in range(9):
+        for c in range(5):
             blocos.append(bloco(10 + l * 79, 15 + c * 35, 70, 25, verde))
 
 
@@ -110,10 +111,17 @@ while 'TRUE':
         plataforma_Jogador.x = pygame.mouse.get_pos()[0] - plataforma_Jogador.l
 
  # fisica da plataforma
-    if (Bola.x >= plataforma_Jogador.x and Bola.x <= plataforma_Jogador.x + plataforma_Jogador.l) or (
-            Bola.x + Bola.l >= plataforma_Jogador.x and Bola.x + Bola.l <= plataforma_Jogador.x + plataforma_Jogador.l + 130):
+    if (Bola.x >= plataforma_Jogador.x and Bola.x <= plataforma_Jogador.x + plataforma_Jogador.l) or (Bola.x + Bola.l >= plataforma_Jogador.x and Bola.x + Bola.l <= plataforma_Jogador.x + plataforma_Jogador.l + 130):
         if Bola.y + Bola.a >= plataforma_Jogador.y and Bola.y + Bola.a <= plataforma_Jogador.y + plataforma_Jogador.a:
             Bola.vy *= -1
+
+# fisica dos blocos
+    for bloco in blocos:
+        if (Bola.x >= bloco.x and Bola.x <= bloco.x + bloco.l) or Bola.x + Bola.l >= bloco.x and Bola.x + Bola.l <= bloco.x + bloco.l:
+            if (Bola.y >= bloco.y and Bola.y <= bloco.y + bloco.a) or Bola.y + Bola.a >= bloco.y and Bola.y + Bola.a <= bloco.y + bloco.a:
+                bloco.visible = False
+                blocos.pop(blocos.index(bloco))
+                Bola.vy *=-1
 
  # fisica das paredes
     if Bola.x + Bola.l >= largura:
