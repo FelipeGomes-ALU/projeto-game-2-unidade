@@ -1,5 +1,4 @@
 import pygame
-
 from pygame.locals import *
 
 pygame.init()
@@ -21,19 +20,22 @@ preto = (0, 0, 0)
 
 # variaveis do jogo
 
-vbola =
+mod_vel = 0
 
 colunas = 7
 linhas = 6
-
+fonte = pygame.font.SysFont('ArialBlack', 50)
 
 # funções do jogo
+
+pygame.time.set_timer(pygame.USEREVENT, 5000)
+
+
 def fundodetela():
     tela.blit(bg, (0, 0))
     Bola.desenhar(tela)
     for bloco in blocos:
         bloco.desenhar(tela)
-    # plat_jogavel = pygame.draw.rect(tela, preto, (x, y, 60, 5))
     plataforma_Jogador.desenhar_plataforma(tela)
     pygame.display.update()
 
@@ -56,8 +58,8 @@ class Bola(object):
         self.l = l
         self.a = a
         self.cor = cor
-        self.vx = -3
-        self.vy = -3
+        self.vx = -2
+        self.vy = -2
 
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, [self.x, self.y, self.a, self.l])
@@ -98,11 +100,21 @@ init()
 Bola = Bola(400, 550, 20, 20, azul)
 plataforma_Jogador = plataforma(largura / 2, altura - 75, 20, 140, (vermelho))
 
+gameover = 'false'
+
+if gameover:
+    if len(blocos) == 0:
+        Texto = fonte.render('parabens, você completou o jogo do OverLord', 1, preto)
+    if Bola.y <= plataforma_Jogador.y:
+        Texto = fonte.render('que pena, você não tem capacidade', 1, preto)
+    tela.blit(Texto, ((largura//2, altura//2)))
+
 # core do jogo
 while 'TRUE':
     relogio.tick(60)
     pygame.mouse.set_visible(bool(0))
     Bola.movimento()
+# controle da plataforma
     if pygame.mouse.get_pos()[0] - plataforma_Jogador.l // 2 < 0:
         plataforma_Jogador.x = 0
     elif pygame.mouse.get_pos()[0] + plataforma_Jogador.l // 2 + 120 > largura:
@@ -133,6 +145,21 @@ while 'TRUE':
     if Bola.y<= 0:
         Bola.vy *=-1
 
+# sistema de aumento da velocidade
+    if mod_vel == 1:
+        for event in pygame.event.get():
+            if event.type == pygame.USEREVENT:
+                Bola.vy *= 1.4
+                mod_vel = 0
+    elif mod_vel == 0:
+        for event in pygame.event.get():
+            if event.type == pygame.USEREVENT:
+                Bola.vx *= 1.4
+                mod_vel = 1
+# GameOver
+    if Bola.y > altura:
+        gameover = 'true'
+
 
 
     fundodetela()
@@ -140,10 +167,7 @@ while 'TRUE':
         if event.type == QUIT:
             pygame.quit()
 
-        # if pygame.key.get_pressed()[K_a]:
-        #    x = x - 5
-        # if pygame.key.get_pressed()[K_d]:
-        #    x = x + 5
+
 
 
 
