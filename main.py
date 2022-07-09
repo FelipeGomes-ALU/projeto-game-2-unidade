@@ -37,7 +37,7 @@ pygame.mixer.music.play()
 # funções do jogo
 fonte = pygame.font.SysFont('arial', 50)
 pygame.time.set_timer(pygame.USEREVENT, 5000)
-
+som_impacto = pygame.mixer.Sound('som_impacto.wav')
 
 def fundodetela():
     tela.blit(bg, (0, 0))
@@ -145,10 +145,12 @@ while 'TRUE':
         plataforma_Jogador.x = pygame.mouse.get_pos()[0] - plataforma_Jogador.l
 
  # fisica da plataforma
-    if (Bola.x >= plataforma_Jogador.x and Bola.x <= plataforma_Jogador.x + plataforma_Jogador.l ) or (Bola.x + Bola.r >= plataforma_Jogador.x and Bola.x + Bola.r <= plataforma_Jogador.x + plataforma_Jogador.l + 140):
+    if (Bola.x >= plataforma_Jogador.x and Bola.x <= plataforma_Jogador.x + plataforma_Jogador.l ) or (Bola.x + Bola.r >= plataforma_Jogador.x and Bola.x + Bola.r <= plataforma_Jogador.x + plataforma_Jogador.l + 135):
         if (Bola.y >= plataforma_Jogador.y and Bola.y <= plataforma_Jogador.y + plataforma_Jogador.a) or (Bola.y + Bola.r >= plataforma_Jogador.y and Bola.y + Bola.r <= plataforma_Jogador.y + plataforma_Jogador.a -20):
             if Bola.y >= plataforma_Jogador.y:
                 Bola.vy *= -1
+                som_impacto.set_volume(0.5)
+                som_impacto.play()
 
 # fisica dos blocos
     for bloco in blocos:
@@ -167,12 +169,18 @@ while 'TRUE':
  # fisica das paredes
     if Bola.x + Bola.r>= largura:
         Bola.vx *= -1
+        som_impacto.set_volume(0.5)
+        som_impacto.play()
 
     if Bola.x < 0:
         Bola.vx *= -1
+        som_impacto.set_volume(0.5)
+        som_impacto.play()
 
     if Bola.y<= 0:
         Bola.vy *=-1
+        som_impacto.set_volume(0.5)
+        som_impacto.play()
 
 # sistema de aumento da velocidade
    # if mod_vel == 1:
