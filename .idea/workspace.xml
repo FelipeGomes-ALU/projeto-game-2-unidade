@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65bed4b0-adcc-45a4-880c-14e2110f1e3c" name="Changes" comment="fisica dos blocos adicionada">
+    <list default="true" id="65bed4b0-adcc-45a4-880c-14e2110f1e3c" name="Changes" comment="sistema de aumento de velocidade incrementado">
+      <change afterPath="$PROJECT_DIR$/RUSH E editada.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sombloco.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sombloco2.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -40,9 +43,14 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\felip\OneDrive\Documentos\GitHub\projeto-game-2-unidade" />
+      <recent name="G:\area de trabalho\documentos" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\felip\OneDrive\Documentos\GitHub\projeto-game-2-unidade" />
     </key>
@@ -126,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656976902025</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="sistema de aumento de velocidade incrementado">
+      <created>1656984844156</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656984844156</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -159,6 +174,7 @@
     <MESSAGE value="plataforma jogavel adicionada" />
     <MESSAGE value="fisica da plataforma e paredes adicionada" />
     <MESSAGE value="fisica dos blocos adicionada" />
-    <option name="LAST_COMMIT_MESSAGE" value="fisica dos blocos adicionada" />
+    <MESSAGE value="sistema de aumento de velocidade incrementado" />
+    <option name="LAST_COMMIT_MESSAGE" value="sistema de aumento de velocidade incrementado" />
   </component>
 </project>
