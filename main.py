@@ -9,7 +9,7 @@ bg = pygame.image.load('background.png')
 largura = 720
 altura = 680
 tela = pygame.display.set_mode((largura, altura))
-pygame.display.set_caption('star dust')
+pygame.display.set_caption('Block Break')
 relogio = pygame.time.Clock()
 
 # cores
@@ -165,7 +165,6 @@ while 'TRUE':
     for bloco in blocos:
         if (Bola.x >= bloco.x and Bola.x <= bloco.x + bloco.l) or Bola.x + Bola.r >= bloco.x and Bola.x + Bola.r <= bloco.x + bloco.l:
             if (Bola.y >= bloco.y and Bola.y <= bloco.y + bloco.a) or Bola.y + Bola.r >= bloco.y and Bola.y + Bola.r <= bloco.y + bloco.a:
-                #bloco.visible = False
                 blocos.pop(blocos.index(bloco))
                 Bola.vy *=-1
                 som_bloco = pygame.mixer.Sound('sombloco4.wav')
