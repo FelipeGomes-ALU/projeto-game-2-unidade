@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65bed4b0-adcc-45a4-880c-14e2110f1e3c" name="Changes" comment="som das paredes e plataforma adicionado">
+    <list default="true" id="65bed4b0-adcc-45a4-880c-14e2110f1e3c" name="Changes" comment="otimização do codigo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -159,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657328440335</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="otimização do codigo">
+      <created>1657769314931</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1657769314931</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -195,6 +202,7 @@
     <MESSAGE value="sistema de aumento de velocidade incrementado" />
     <MESSAGE value="trilha sonora, som de impacto dos blocos e mensagens de gameover adicionadas" />
     <MESSAGE value="som das paredes e plataforma adicionado" />
-    <option name="LAST_COMMIT_MESSAGE" value="som das paredes e plataforma adicionado" />
+    <MESSAGE value="otimização do codigo" />
+    <option name="LAST_COMMIT_MESSAGE" value="otimização do codigo" />
   </component>
 </project>

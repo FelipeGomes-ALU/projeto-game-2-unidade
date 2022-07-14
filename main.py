@@ -23,11 +23,10 @@ amarelo = (255, 255, 0)
 
 # variaveis do jogo
 
-mod_vel = 0
 
 colunas = 7
 linhas = 6
-bolax = random.randint(50,largura-50)
+bolax = random.randint(100,600)
 fonte = pygame.font.SysFont('ArialBlack', 50)
 pygame.mixer.init()
 pygame.mixer.music.load('RUSH E editada.mp3')
@@ -39,7 +38,7 @@ pygame.mixer.music.play()
 pygame.font.SysFont('arial', 50)
 pygame.time.set_timer(pygame.USEREVENT, 10000)
 som_impacto = pygame.mixer.Sound('som_impacto.wav')
-
+vol_imp = 1.5
 def fundodetela():
     tela.blit(bg, (0, 0))
     Bola.desenhar(tela)
@@ -60,7 +59,7 @@ def fundodetela():
         else:
             texto = fonte.render("que pena, você perdeu!", 1, (255, 255, 255))
         tela.blit(texto, ((largura // 2 - texto.get_width() // 2), altura // 2 - texto.get_height() // 2))
-        pygame.mixer.music.stop()
+
 
     pygame.display.update()
 
@@ -104,6 +103,19 @@ class bloco(object):
         self.visivel = 'true'
         self.xx = self.x + self.l
         self.yy = self.y + self.a
+    def desenhar(self, tela):
+        pygame.draw.rect(tela, self.cor, [self.x, self.y, self.l, self.a])
+
+class rebloco(object):
+    def __init__(self, x, y, l, a, cor):
+        self.x = x
+        self.y = y
+        self.l = l
+        self.a = a
+        self.cor = cor
+        self.visivel = 'true'
+        self.xx = self.x + self.l
+        self.yy = self.y + self.a
 
     def desenhar(self, tela):
         pygame.draw.rect(tela, self.cor, [self.x, self.y, self.l, self.a])
@@ -111,7 +123,6 @@ class bloco(object):
 
 # gerador de blocos
 blocos = []
-
 
 def init():
     global blocos
@@ -144,10 +155,10 @@ while 'TRUE':
 
  # fisica da plataforma
     if (Bola.x >= plataforma_Jogador.x and Bola.x <= plataforma_Jogador.x + plataforma_Jogador.l ) or (Bola.x + Bola.r >= plataforma_Jogador.x and Bola.x + Bola.r <= plataforma_Jogador.x + plataforma_Jogador.l + 135):
-        if (Bola.y >= plataforma_Jogador.y and Bola.y <= plataforma_Jogador.y + plataforma_Jogador.a) or (Bola.y + Bola.r >= plataforma_Jogador.y and Bola.y + Bola.r <= plataforma_Jogador.y + plataforma_Jogador.a -20):
-            if Bola.y >= plataforma_Jogador.y:
+        if (Bola.y >= plataforma_Jogador.y and Bola.y <= plataforma_Jogador.y + plataforma_Jogador.a) or (Bola.y + Bola.r >= plataforma_Jogador.y and Bola.y + Bola.r <= plataforma_Jogador.y + plataforma_Jogador.a-20):
+           if Bola.y >= plataforma_Jogador.y:
                 Bola.vy *= -1
-                som_impacto.set_volume(0.5)
+                som_impacto.set_volume(vol_imp)
                 som_impacto.play()
 
 # fisica dos blocos
@@ -158,23 +169,23 @@ while 'TRUE':
                 blocos.pop(blocos.index(bloco))
                 Bola.vy *=-1
                 som_bloco = pygame.mixer.Sound('sombloco4.wav')
-                som_bloco.set_volume(0.5)
+                som_bloco.set_volume(vol_imp)
                 som_bloco.play()
 
  # fisica das paredes
     if Bola.x + Bola.r>= largura:
         Bola.vx *= -1
-        som_impacto.set_volume(0.5)
+        som_impacto.set_volume(vol_imp)
         som_impacto.play()
 
     if Bola.x < 0:
         Bola.vx *= -1
-        som_impacto.set_volume(0.5)
+        som_impacto.set_volume(vol_imp)
         som_impacto.play()
 
     if Bola.y<= 0:
         Bola.vy *=-1
-        som_impacto.set_volume(0.5)
+        som_impacto.set_volume(vol_imp)
         som_impacto.play()
 
 # sistema de aumento da velocidade
@@ -187,6 +198,22 @@ while 'TRUE':
         gameover = 'true'
         Bola.vx = 0
         Bola.vy = 0
+        pygame.mixer.music.stop()
+        vol_imp = 0.0
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_SPACE]:
+        gameover = 'false'
+        blocos.clear()
+        for l in range(9):
+            for c in range(5):
+                blocos.append(rebloco(10 + l * 79, 15 + c * 35, 70, 25, verde))
+        Bola.x = bolax
+        Bola.y = 550
+        Bola.vx = random.choice([ 3, -3])
+        Bola.vy = -3
+        pygame.mixer.music.play(1,0.0,0)
+        vol_imp = 0.5
+
 
     fundodetela()
     for event in pygame.event.get():
